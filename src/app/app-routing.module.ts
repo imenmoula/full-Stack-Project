@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { PatientsComponent } from './patients/patients.component'; // Ensure this is used
+import { AddPatientComponent } from './add-patient/add-patient.component';
+import { UpdatePatientComponent } from './update-patient/update-patient.component';
+const routes: Routes = [
+  {path:"patients", component: PatientsComponent},
+{path:"add-patient", component: AddPatientComponent},
+{path:"",redirectTo:"patients",pathMatch:"full"},
+{path:'updatePatient/:id',component:UpdatePatientComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

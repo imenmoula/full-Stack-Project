@@ -1,0 +1,66 @@
+<div class="container">
+  <div>
+    <h2>Ajouter un Patient :</h2>
+  </div>
+  <form>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Patient</label>
+      <input type="text" [(ngModel)]="newPatient.idPatient" name="idPatient" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Patient</label>
+      <input type="text" [(ngModel)]="newPatient.nomPatient" name="nomPatient" class="form-control">
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prenom Patient</label>
+      <input type="text" [(ngModel)]="newPatient.prenomPatient" name="prenomPatient" class="form-control">
+    </div>
+
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>telephone Patient</label>
+        <input type="text" [(ngModel)]="newPatient.phonePatient" name="phonePatient" class="form-control">
+    </div>
+
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Maladie Patient</label>
+        <select [(ngModel)]="newPatient.maladiePatient" name="maladiePatient" class="form-control">
+            <option value="Maladie1">Maladie1</option>
+            <option value="maladie2">Maladie2</option>
+            <option value="maladie3">Maladie3</option>
+            <option value="maladie4">Maladie4</option>
+            <option value="maladie5">Maladie5</option>
+        </select>      
+   </div>
+
+
+   
+  
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date création</label>
+      <input type="date" [(ngModel)]="newPatient.dateCreation" name="dateCreation" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Doctors:</label>
+      <select class="form-control form-control-lg" id="idDoctor" name="idDoctor" [(ngModel)]="newIdDoct">
+        <option *ngFor="let doct of doctors" [value]="doct.idDoct">
+          {{ doct.nomDoct }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mt-2">
+      <button type="submit" (click)="addPatient()" class="btn btn-success">Ajouter</button>
+      <div>
+        <h3 class="text-success">{{ message }}</h3>     
+
+      </div>
+    </div>
+
+  </form>
+</div>
