@@ -15,21 +15,16 @@ export class PatientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.patientService.listePatients().subscribe(patients => {
-    //   console.log(patients);
-    //   this.patients = patients;
-    // })
+    
     this.chargerPatients();
   }
   // Charger la liste des patients
   chargerPatients(): void {
     this.patientService.listePatients()
-      .subscribe(pats => {
-        console.log(pats);
-        this.patients = pats;
-      }, error => {
-        console.error('Erreur lors du chargement des patients', error);
-      });
+    .subscribe(pat => {
+    console.log(pat);
+    this.patients = pat;
+    });
   }
 
   // Supprimer un patient

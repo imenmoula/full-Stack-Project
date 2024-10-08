@@ -7,21 +7,21 @@ import { PatientsComponent } from './patients/patients.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { FormsModule } from '@angular/forms';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
-import { HttpClientModule  } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
+import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
 @NgModule({
   declarations: [
     AppComponent,
     PatientsComponent,
     AddPatientComponent,
-    UpdatePatientComponent
+    UpdatePatientComponent,
+    RechercheParCategorieComponent
   ],
-  imports: [
+ imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-
   ],
   providers: [
    

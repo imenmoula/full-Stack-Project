@@ -5,8 +5,9 @@ export class Patient {
         nomPatient!: string;
         prenomPatient!: string;
         phonePatient!: string;
-        maladiePatient!: string;
+        MaladiePatient!: string;
         dateCreation!:Date;
         doctor!: Doctor;
-   
+
+	
 }

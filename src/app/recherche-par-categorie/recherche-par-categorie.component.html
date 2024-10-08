@@ -1,4 +1,13 @@
 <div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <label>Categorie docteur </label>
+        <select class="form-control form-control-lg" id="idDoct" name="idDoct" [(ngModel)]="idDoctor"
+            (change)="onChange()">
+            <option *ngFor="let doct of doctors" value="{{doct.idCat}}">
+                {{ doct.nomDoct}}
+            </option>
+        </select>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -25,7 +34,8 @@
                             <td>{{ p.MaladiePatient }}</td>
                             <td>{{ p.dateCreation | date: 'dd/MM/yyyy' }}</td>
                             <td>{{ p?.doctor?.nomDoct }}</td>
-                            <td><button class="btn btn-success" [routerLink]="['/updatePatient', p.idPatient]">Modifier</button></td>
+                            <td><button class="btn btn-success"
+                                    [routerLink]="['/updatePatient', p.idPatient]">Modifier</button></td>
                             <td>
                                 <button class="btn btn-danger" (click)="supprimerPatient(p)">Supprimer</button>
                             </td>
