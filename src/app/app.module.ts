@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { UpdatePatientComponent } from './update-patient/update-patient.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
+import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 @NgModule({
   declarations: [
     AppComponent,
     PatientsComponent,
     AddPatientComponent,
     UpdatePatientComponent,
-    RechercheParCategorieComponent
+    RechercheParCategorieComponent,
+    RechercheParNomComponent
   ],
  imports: [
     BrowserModule,

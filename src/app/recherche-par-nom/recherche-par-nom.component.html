@@ -1,0 +1,46 @@
+<div class="container">
+    <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2 ">
+    <label>Nom Produit en tapant</label>
+    <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+    </div>
+    </form>
+    
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id Patient</th>
+                            <th>Nom Patient</th>
+                            <th>Prénom Patient</th>
+                            <th>Téléphone Patient</th>
+                            <th>Maladie Patient</th>
+                            <th>Date Création</th>
+                            <th>Doctors</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of patients">
+                            <td>{{ p.idPatient }}</td>
+                            <td>{{ p.nomPatient }}</td>
+                            <td>{{ p.prenomPatient }}</td>
+                            <td>{{ p.phonePatient }}</td>
+                            <td>{{ p.MaladiePatient }}</td>
+                            <td>{{ p.dateCreation | date: 'dd/MM/yyyy' }}</td>
+                            <td>{{ p?.doctor?.nomDoct }}</td>
+                            <td><button class="btn btn-success"
+                                    [routerLink]="['/updatePatient', p.idPatient]">Modifier</button></td>
+                            <td>
+                                <button class="btn btn-danger" (click)="supprimerPatient(p)">Supprimer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
