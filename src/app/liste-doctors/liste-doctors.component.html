@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md-4 col-lg-4"> 
+            <app-update-doctors 
+                [doctor]="updatedDoct" 
+                (doctorUpdated)="doctorUpdated($event)" 
+                [ajout]="ajout">
+            </app-update-doctors>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Liste des Médecins</h5> <!-- Titre pour le tableau -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Spécialité</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of Doctors"> 
+                        <td>{{ d.id_doct }}</td>
+                        <td>{{ d.nomDoct }}</td>
+                        <td>{{ d.prenomDoct }}</td>
+                        <td>{{ d.specialite }}</td>
+                        <td>{{ d.tel }}</td>
+                        <td>
+                            <button class="btn btn-success" (click)="updateDoct(d)">Éditer</button>
+                            <button class="btn btn-danger" (click)="supprimerDoctor(d)">Supprimer</button>  
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

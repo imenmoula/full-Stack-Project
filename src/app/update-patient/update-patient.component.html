@@ -1,9 +1,9 @@
 <div class="container">
     <div>
         <h2>Modifier un Patient :</h2>
-        <div>
-            <h3 class="text-success">{{ message }}</h3> 
-        </div>
+        <div *ngIf="message" class="alert alert-success">
+            {{ message }}
+          </div>
 
     </div>
     <form>
@@ -35,9 +35,23 @@
 
         <div class="col-sm-4 col-md-4 col-lg-4">
             <label>Doctors modifier:</label>
-            <select class="form-control form-control-lg" id="idDoct" name="idDoct"[(ngModel)]="updatedDoctId">
-            <option *ngFor="let doct of doctors" [value]="doct.idDoct" >{{doct.nomDoct}}</option>
+            <select class="form-control form-control-lg" id="id_doct" name="id_doct" [(ngModel)]="updatedDoctId">
+              <option *ngFor="let doct of doctors" [value]="doct.id_doct">
+                {{ doct.nomDoct }} {{ doct.prenomDoct }}
+              </option>
+              <option *ngIf="!updatedDoctId" disabled selected>No doctor assigned</option>
             </select>
+          </div>
+          
+          
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Specilaiter de medcine:</label>
+            <select class="form-control form-control-lg" id="id_doct" name="id_doct"[(ngModel)]="updatedDoctId">
+                <option *ngFor="let doct of doctors" [value]="doct.id_doct">
+                    {{doct.specialite}} 
+                  </option>
+             </select>
         </div>
             
         <div class="mt-2">

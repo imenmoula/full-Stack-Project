@@ -1,29 +1,39 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Patient } from '../model/patient.model';
-import { HttpClient } from '@angular/common/http';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-recherche-par-nom',
   templateUrl: './recherche-par-nom.component.html',
-  styleUrl: './recherche-par-nom.component.css'
+  styles: []
 })
-export class RechercheParNomComponent {
-  nomPatient!: string;
-  patients!:Patient;
-  constructor(){}
-  ngOnInit(): void {
-    
-  }
-  
+export class RechercheParNomComponent implements OnInit {
 
-  recherchePatient(){
-    this.patientsService.rechercherParNom(this.nomPatient).
-    subscribe(pat => {
-    this.patients = pat;
-    console.log(pat)});
-    }
-  rechercherParNom(nom: string):Observable< Patient[]> {
-    const url = `${this.apiURL}/prodsByName/${nom}`;
-    return this.http.get<Patient[]>(url);
+  nomPatient!: string;
+  patients!: Patient[];
+  allPatients!: Patient[];
+  searchTerm!: string;
+
+  constructor(private patientService: PatientService) {}
+
+  ngOnInit(): void {
+    this.patientService.listePatients().subscribe(pats => {
+      console.log(pats);
+      this.patients = pats;
+      this.allPatients = pats; // Stocker tous les patients pour le filtrage local
+    });
   }
+
+  rechercherPats() {
+    this.patientService.rechercherParNom(this.nomPatient).subscribe(pats => {
+      console.log(pats);
+      this.patients = pats;
+    });
+  }
+
+  onKeyUp(filterText: string) {
+    this.patients = this.allPatients.filter(item =>
+      item.nomPatient.toLowerCase().includes(filterText.toLowerCase())
+    );
+  }
+}

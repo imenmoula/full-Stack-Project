@@ -19,28 +19,33 @@ export class UpdatePatientComponent implements OnInit {
               private router:Router,
               private patientService: PatientService) { }
   ngOnInit(){
-        this.patientService.listeDoctors().
-        subscribe(doct=>{
-          console.log(doct);
-          //this.doctors = doct._embedded.doctors;
-                });
-        this.patientService.consulterPatient(this.activatedRoute.snapshot.params['id']).subscribe(
-          pat=>{this.currentPatient=pat;
-            this.updatedDoctId=this.currentPatient.doctor.idDoct;
-          }
-          
-        );
-          
-        
-  }
+    this.patientService.listeDoctors().subscribe(doct=>{console.log(doct);
+      this.doctors=doct._embedded.doctors;
+    }
+      
+    );
+    this.patientService.consulterPatient(this.activatedRoute.snapshot.params['id']).
+    subscribe(pat=>{
+        this.currentPatient = pat;
+        this.updatedDoctId = this.currentPatient.doctor.id_doct;
+        console.log(pat);
+    },
+  
+  )}      
+
+
+
+  
 
   updatePatient() 
   {
- this.currentPatient.doctor=this.doctors.find(doct=>doct.idDoct==this.updatedDoctId)!;
-this.patientService.updatePatient(this.currentPatient).subscribe
-(pat=>{
-  this.router.navigate(['patients']);  
-});
+    this.currentPatient.doctor = this.doctors.
+    find(doct => doct.id_doct == this.updatedDoctId)!;
+   this.patientService.updatePatient(this.currentPatient).subscribe(pat => {
+   this.router.navigate(['patients']);
+   this.message = "Patient modifié avec succès !";
+  }
+   );
   }
 }
 

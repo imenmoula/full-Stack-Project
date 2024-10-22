@@ -11,9 +11,9 @@
                             <th>Téléphone Patient</th>
                             <th>Maladie Patient</th>
                             <th>Date Création</th>
-                            <th>Doctors</th>
-                            <th></th>
-                            <th></th>
+                            <th>Nom du Médecin</th>
+                            <th>Spécialité du Médecin</th>
+                            <th>Actions</th> <!-- Colonne pour les actions -->
                         </tr>
                     </thead>
                     <tbody>
@@ -22,13 +22,24 @@
                             <td>{{ p.nomPatient }}</td>
                             <td>{{ p.prenomPatient }}</td>
                             <td>{{ p.phonePatient }}</td>
-                            <td>{{ p.MaladiePatient }}</td>
+                            <td>{{ p.maladiePatient }}</td>
                             <td>{{ p.dateCreation | date: 'dd/MM/yyyy' }}</td>
-                            <td>{{ p?.doctor?.nomDoct }}</td>
-                            <td><button class="btn btn-success" [routerLink]="['/updatePatient', p.idPatient]">Modifier</button></td>
+                            <td>{{ p.doctor?.nomDoct }} {{ p.doctor?.prenomDoct }}</td>
+                            <td>{{ p.doctor?.specialite }}</td>
+
                             <td>
-                                <button class="btn btn-danger" (click)="supprimerPatient(p)">Supprimer</button>
+                                <!-- Bouton Supprimer pour Admins -->
+                                <a *ngIf="authService.isAdmin()" 
+                                   class="btn btn-danger btn-sm" 
+                                   (click)="supprimerPatient(p)">Supprimer</a>
                             </td>
+                            <td>
+                                <!-- Bouton Modifier pour Admins -->
+                                <a *ngIf="authService.isAdmin()" 
+                                   class="btn btn-success btn-sm" 
+                                   [routerLink]="['/updatePatient', p.idPatient]">Modifier</a>
+                            </td>
+                            
                         </tr>
                     </tbody>
                 </table>

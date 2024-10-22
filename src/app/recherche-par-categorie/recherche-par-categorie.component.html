@@ -1,13 +1,14 @@
-<div class="container">
-    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-        <label>Categorie docteur </label>
-        <select class="form-control form-control-lg" id="idDoct" name="idDoct" [(ngModel)]="idDoctor"
-            (change)="onChange()">
-            <option *ngFor="let doct of doctors" value="{{doct.idCat}}">
-                {{ doct.nomDoct}}
-            </option>
-        </select>
-    </div>
+<div class="container"> 
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4"> 
+        <label>Echercher un medecin </label> 
+        <select class="form-control form-control-lg"   id="id_doct" name="id_doct"
+         [(ngModel)]="IdDoctors" (change)="onChange()">
+          <option *ngFor="let d of doctors" value="{{d.id_doct}}">
+               {{d.nomDoct}} {{ d.prenomDoct }} 
+         </option>
+    </select> 
+   </div>
+
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -20,25 +21,20 @@
                             <th>Téléphone Patient</th>
                             <th>Maladie Patient</th>
                             <th>Date Création</th>
-                            <th>Doctors</th>
-                            <th></th>
-                            <th></th>
+                            <th>Nom de medecin</th>
+                            <th>Specialite de medicin</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let p of patients">
-                            <td>{{ p.idPatient }}</td>
-                            <td>{{ p.nomPatient }}</td>
-                            <td>{{ p.prenomPatient }}</td>
-                            <td>{{ p.phonePatient }}</td>
-                            <td>{{ p.MaladiePatient }}</td>
-                            <td>{{ p.dateCreation | date: 'dd/MM/yyyy' }}</td>
-                            <td>{{ p?.doctor?.nomDoct }}</td>
-                            <td><button class="btn btn-success"
-                                    [routerLink]="['/updatePatient', p.idPatient]">Modifier</button></td>
-                            <td>
-                                <button class="btn btn-danger" (click)="supprimerPatient(p)">Supprimer</button>
-                            </td>
+                        <tr *ngFor="let pat of patients"> <!-- Make sure to use 'patients' here -->
+                            <td>{{ pat.idPatient }}</td>
+                            <td>{{ pat.nomPatient }}</td>
+                            <td>{{ pat.prenomPatient }}</td>
+                            <td>{{ pat.phonePatient }}</td>
+                            <td>{{ pat.maladiePatient }}</td>
+                            <td>{{ pat.dateCreation | date: 'dd/MM/yyyy' }}</td>
+                            <td>{{ pat.doctor.nomDoct }} {{ pat.doctor.prenomDoct }}</td>
+                            <td>{{ pat.doctor.specialite }}</td>
                         </tr>
                     </tbody>
                 </table>

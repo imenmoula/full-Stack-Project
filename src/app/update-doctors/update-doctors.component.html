@@ -1,0 +1,35 @@
+<form>
+    <div  [hidden]="ajout">
+        <label>ID Doctor</label>
+        <input type="text" [(ngModel)]="doctor.id_doct" name="id_doct" class="form-control w-25">
+    </div>
+    <div>
+        <label>Nom Doctor</label>
+        <input type="text" [(ngModel)]="doctor.nomDoct" name="nomDoct" class="form-control" placeholder="Entrez un nom de doct...">
+    </div>
+
+    <div>
+        <label>Prenom Doctor</label>
+        <input type="text" [(ngModel)]="doctor.prenomDoct" name="prenomDoct" class="form-control" placeholder="Entrez un prenomDoct...">
+    </div>
+
+    <div>
+        <label>Telephone</label>
+        <input type="text" [(ngModel)]="doctor.tel" name="tel" class="form-control" placeholder="Entrez un tel...">
+    </div>
+
+    <div>
+        <label>Specialite:</label>
+        <input type="text" [(ngModel)]="doctor.specialite" name="specialite" class="form-control" placeholder="Entrez un specialite...">
+    </div>
+    
+    
+    <div class="mt-2">
+        <button type="submit" [disabled]="!doctor.nomDoct" class="btn btn-success"
+            (click)="saveDoctor()" >{{ajout ? 'Ajouter' : 'Modifier'}}
+        </button>
+    </div>
+</form>
+
+
+    

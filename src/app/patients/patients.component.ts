@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../model/patient.model';
 import { PatientService } from '../services/patient.service';
@@ -8,9 +9,10 @@ import { PatientService } from '../services/patient.service';
   styleUrls: ['./patients.component.css'] 
 })
 export class PatientsComponent implements OnInit {
-  patients?:Patient[];
+  patients? :Patient[];
 
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService,
+               public authService:AuthService) {
   
   }
 

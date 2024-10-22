@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gestion des Patients</title>
+    <title>Gestion de clinic </title>
 </head>
 
 <body>
@@ -21,27 +21,31 @@
                     Patients
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="add-patient">Ajouter</a>
+                    <a *ngIf="authService.isAdmin()" class="dropdown-item"
+                    routerLink = "add-patient">Ajouter</a>
                     <a class="dropdown-item" href="#">Lister</a>
-                    <a class="dropdown-item" routerLink="/rechercheParCategorie">Recherche Par
-                        Catégorie</a>
+                    <a class="dropdown-item" routerLink="/RechercheParCategories">Recherche Par Medecin</a>
+                    <a class="dropdown-item" routerLink="/rechercheParNom" >recherche Par Nom</a>
+                    <a class="dropdown-item" routerLink="/listeDoctors" >Gestion des doctors</a>
+<!-- {path:"UpdateDoctors",component:UpdateDoctorsComponent}, -->
 
                 </div>
-
-                <a class="dropdown-item" routerLink="/rechercheParNom" >Recherche Par Nom</a>
 
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
+            <li> <a class="nav-link">{{authService.loggedUser}}</a></li> 
+              <li class="nav-item dropdown">
+
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    [username]
+                    Connexion
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">login</a>
-                    <a class="dropdown-item" href="#">logout</a>
+                    <a *ngIf="!authService.isloggedIn"  class="dropdown-item" routerLink = "login">login</a>
+                    <a *ngIf="authService.isloggedIn" class="dropdown-item" (click) = "onLogout()">logout</a>
+                              
                     <a class="dropdown-item" href="#">Profile</a>
-                </div>
+                  </div>
             </li>
         </ul>
     </nav>

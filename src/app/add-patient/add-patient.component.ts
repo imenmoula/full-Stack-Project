@@ -20,23 +20,22 @@ export class AddPatientComponent implements OnInit {
   ngOnInit(): void {
 
     this.patientService.listeDoctors().
-    subscribe(doct=>{
-      console.log(doct);
-      //this.doctors=doct._embedded.doctors;
+    subscribe(doct=>{console.log(doct);
+      this.doctors=doct._embedded.doctors;
+     
       
     });
   }
   
   
   addPatient() {
-    this.newPatient.doctor=this.doctors.find(doct=>doct.idDoct==this.newIdDoct)!;
+    this.newPatient.doctor=this.doctors.find(doct=>doct.id_doct==this.newIdDoct)!;
     
     this.patientService.ajouterPatient(this.newPatient)
-    .subscribe(pat=>{
-      console.log(pat);
-      this.router.navigate(['patients']);
-    }
-    );
+                        .subscribe(pat=>{
+                          console.log(pat);
+                          this.router.navigate(['patients']);
+                          });
 
   }
   
