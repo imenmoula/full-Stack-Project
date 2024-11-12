@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.imen.patient.dto.PatientDTO;
@@ -20,20 +21,23 @@ public class PatientServiceImpl implements PatientService {
 
 	@Autowired
 	ModelMapper modelMapper;
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@Override
-	public PatientDTO savePatient(PatientDTO p) {
-	    Patient patientEntity = convertDtoToEntity(p);
+	public Patient savePatient(Patient p) {
+		return patientRepository.save(p);
+	    /*Patient patientEntity = convertDtoToEntity(p);
 	    Patient savedPatient = patientRepository.save(patientEntity);
-	    return convertEntityToDto(savedPatient);
+	    return convertEntityToDto(savedPatient);*/
 	}
 
 	@Override
-	public PatientDTO updatePatient(PatientDTO p) {
-	    Patient patientEntity = convertDtoToEntity(p);
+	public Patient updatePatient(Patient p) {
+		return patientRepository.save(p);
+	    /*Patient patientEntity = convertDtoToEntity(p);
 	    Patient updatedPatient = patientRepository.save(patientEntity);
-	    return convertEntityToDto(updatedPatient);
+	    return convertEntityToDto(updatedPatient);*/
 	}
+	
 
 
 
@@ -49,16 +53,18 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientDTO getPatient(Long id) {
-		return  convertEntityToDto( patientRepository.findById(id).get() );
+	public Patient getPatient(Long id) {
+		return patientRepository.findById(id).get();
+		/*return  convertEntityToDto( patientRepository.findById(id).get() );*/
 		
 	}
 
 	@Override
-	public List<PatientDTO> getAllPatients() {
-	    return patientRepository.findAll().stream()
+	public List<Patient> getAllPatients() {
+		return patientRepository.findAll();
+	    /*return patientRepository.findAll().stream()
 	            .map(this::convertEntityToDto)
-	            .collect(Collectors.toList());
+	            .collect(Collectors.toList());*/
 	}
 				//OU BIEN
 				/*List<Produit> prods = patientRepository.findAll();
@@ -111,7 +117,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 
-	@Override
+	/*@Override
 	public PatientDTO convertEntityToDto(Patient patient) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
 
@@ -120,7 +126,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 
-		/*PatientDTO patientDTO = new PatientDTO ();
+		PatientDTO patientDTO = new PatientDTO ();
 		patientDTO.setIdPatient(patient.getIdPatient());
 		patientDTO.setNomPatient(patient.getNomPatient());
 		patientDTO.setPrenomPatient(patient.getPrenomPatient());
@@ -138,12 +144,12 @@ public class PatientServiceImpl implements PatientService {
 		.doctor(patient.getDoctor())
 		.build();*/
 	
-	@Override
-	public Patient convertDtoToEntity(PatientDTO patientDto) {
+	/*@Override
+	public PatientDto convertDtoToEntity(PatientDTO patientDto) {
 			Patient patient = new Patient();
 			patient = modelMapper.map(patientDto, Patient.class);
-			return patient;
-	}
+			return patientDto;
+	}*/
 		/*Patient patient = new Patient();
 		patient.setIdPatient(patientDto.getIdPatient());;
 		patient.setNomPatient(patientDto.getNomPatient());;

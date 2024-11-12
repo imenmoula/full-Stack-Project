@@ -1,12 +1,14 @@
-package com.imen.patient.restcontrollers;
+package com.imen.patient.restcontrollers; 
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,27 +30,32 @@ public class PatientRestController {
 	return patientservice.findByNomPatientContains(nom);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public List<PatientDTO> getAllPatients() {
+	@RequestMapping(path="all",method = RequestMethod.GET)
+	public List<Patient> getAllPatients() {
 	return patientservice.getAllPatients();
 	}
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public PatientDTO getPatientById(@PathVariable("id") Long id) {
+	@RequestMapping(value="/getbyid/{id}",method = RequestMethod.GET)
+	@GetMapping("/getbyid/{id}")
+	public Patient getPatientById(@PathVariable("id") Long id) {
 	return patientservice.getPatient(id);
 	}
 	
 
-	@RequestMapping(method = RequestMethod.POST)
-    public PatientDTO createPatient(@RequestBody PatientDTO patientDTO) {
-        return patientservice.savePatient(patientDTO);
+	@RequestMapping(path="/addpat",method = RequestMethod.POST)
+    //@PostMapping("/addpat")
+	public Patient createPatient(@RequestBody Patient patient) {
+        return patientservice.savePatient(patient);
     }
 
-	@RequestMapping(method = RequestMethod.PUT)
-    public PatientDTO updatePatient(@RequestBody PatientDTO patientDTO) {
-        return patientservice.updatePatient(patientDTO);
+	@RequestMapping(path="/updatepat",method = RequestMethod.PUT)
+	@PutMapping("/updatepat")
+    public Patient updatePatient(@RequestBody Patient patient) {
+        return patientservice.updatePatient(patient);
     }
-	@RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/delpat/{id}",method = RequestMethod.DELETE)
+	@DeleteMapping("/delpat/{id}")
+
 	public void deletePatient(@PathVariable("id") Long id)
 	{
 		patientservice.deletePatientById(id);

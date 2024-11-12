@@ -7,10 +7,11 @@ import com.imen.patient.entities.Doctor;
 import com.imen.patient.entities.Patient;
 
 public interface PatientService {
-	PatientDTO savePatient(PatientDTO p);
-	PatientDTO getPatient(Long id);
-	List<PatientDTO> getAllPatients();
-	PatientDTO updatePatient(PatientDTO  p);
+	
+	Patient savePatient(Patient p);
+	Patient getPatient(Long id);
+	List<Patient> getAllPatients();
+	Patient updatePatient(Patient  p);
 	
 	void deletePatient(Patient p);
 	 void deletePatientById(Long id);
@@ -21,9 +22,9 @@ public interface PatientService {
 	List<Patient> findByDoctorIdDoct(Long id);
 	List<Patient> findByOrderByNomPatientAsc();
 	List<Patient> trierPatientsNomMaladie();
-	PatientDTO convertEntityToDto (Patient patient);
+	/*PatientDTO convertEntityToDto (Patient patient);
 
-	Patient  convertDtoToEntity (PatientDTO patientDto);
+	Patient  convertDtoToEntity (PatientDTO patientDto);*/
 
 
 }
